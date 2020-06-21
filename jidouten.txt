@@ -1,0 +1,87 @@
+A．_____の漢字の読み方を選びなさい。<br><br>
+1．外食はやめて、<u>自炊</u>をすることにしました。</br>
+<input type="radio" id="q1a1" name="q1" value="a1">
+<label for="a1">しすい</label><div name="q1a1check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q1a2" name="q1" value="a2">
+<label for="a2">じすい</label><div name="q1a2check" style="display:none;color:green">O</div><br>
+<input type="radio" id="q1a3" name="q1" value="a3">
+<label for="a3">じたき</label><div name="q1a3check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q1a4" name="q1" value="a4">
+<label for="a4">じはん</label><div name="q1a4check" style="display:none;color:red">X</div><br>
+2．<u>冷蔵庫</u>でビールを冷やしておいてください。<br>
+<input type="radio" id="q2a1" name="q2" value="a1">
+<label for="a1">れいとうこ</label><div name="q2a1check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q2a2" name="q2" value="a2">
+<label for="a2">れいそうこ</label><div name="q2a2check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q2a3" name="q2" value="a3">
+<label for="a3">れいぞうこ</label><div name="q2a3check" style="display:none;color:green">O</div><br>
+<input type="radio" id="q2a4" name="q2" value="a4">
+<label for="a4">れいぞうこう</label><div name="q2a4check" style="display:none;color:red">X</div><br>
+<br>
+B．_____の漢字を選びなさい。<br><br>
+1．魚を<u>やいた</u>ら、こげてしまった。</br>
+<input type="radio" id="q3a1" name="q3" value="a1">
+<label for="a1">揚げた</label><div name="q3a1check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q3a2" name="q3" value="a2">
+<label for="a2">炒いた</label><div name="q3a2check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q3a3" name="q3" value="a3">
+<label for="a3">炊いた</label><div name="q3a3check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q3a4" name="q3" value="a4">
+<label for="a4">焼いた</label><div name="q3a4check" style="display:none;color:green">O</div><br>
+2．疲れた時は、<u>あまい</u>ものがほしくなる。<br>
+<input type="radio" id="q4a1" name="q4" value="a1">
+<label for="a1">甘い</label><div name="q4a1check" style="display:none;color:green">O</div><br>
+<input type="radio" id="q4a2" name="q4" value="a2">
+<label for="a2">幸い</label><div name="q4a2check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q4a3" name="q4" value="a3">
+<label for="a3">苦い</label><div name="q2a3check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q4a4" name="q4" value="a4">
+<label for="a4">濃い</label><div name="q4a4check" style="display:none;color:red">X</div><br>
+<br>
+C. 次の言葉を並べ替えて文を作りなさい。<br><br>
+1.　A　うちに　B　そうじを　C　友達が　D　してしまおう　E　出かけている　F　部屋の<br>
+<input name="q5a1" type="text" style="text-transform:uppercase;border: 2px solid"><div name="q5a1check" style="display:none;color:red">CEAFBD</div><br>
+2.　A　料理を　B　間　C　テレビを　D　作っている　E　私が　F　友達は　G　見ていた<br>
+<input name="q6a1" type="text" style="text-transform:uppercase;border: 2px solid"><div name="q6a1check" style="display:none;color:red">EADBFCG</div><br>
+<br>
+E.　_____の漢字の読み方を書きなさい。<br><br>
+1.　お<u>弁当</u>の工場でアルバイトをしています。<br>
+<input name="q9a1" type="text" style="text-transform:uppercase;border: 2px solid"><div name="q9a1check" style="display:none;color:red">べんとう</div><br>
+2.　<u>野菜</u>は新鮮なら新鮮なほどいいです。<br>
+<input name="q10a1" type="text" style="text-transform:uppercase;border: 2px solid"><div name="q10a1check" style="display:none;color:red">やさい</div><br>
+<br>
+
+
+<button onclick="showAnswer()">チェックする</button>
+<script>
+function showAnswer() {
+  var multiplechoice = ["q1","q2","q3","q4"];
+  multiplechoice.forEach(function(question) {
+    var selected = document.querySelector('input[name=' + question + ']:checked');
+    if (selected !== null) {
+      var collections= document.getElementsByName(question + selected.value + "check");
+      if (collections.length > 0) {
+        collections[0].style.display = "inline";
+      }
+    }
+  })
+  var textbasedquestion = ["q5","q6","q9","q10"];
+  textbasedquestion.forEach(function(question) {
+    var collections = document.getElementsByName(question + "a1");
+    if (collections.length > 0) {
+      var input = collections[0].value;
+      if (input.length > 0) {
+        var answerElement = document.getElementsByName(question + "a1check")[0];
+        answerElement.style.color = "red";
+        if (input == answerElement.textContent) {
+          answerElement.style.color = "green";
+        }
+        answerElement.style.display = "inline";
+      }
+    }
+  })
+}
+</script>
+
+
+
