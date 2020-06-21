@@ -40,17 +40,28 @@ B．_____の漢字を選びなさい。<br><br>
 <br>
 C. 次の言葉を並べ替えて文を作りなさい。<br><br>
 1.　A　うちに　B　そうじを　C　友達が　D　してしまおう　E　出かけている　F　部屋の<br>
-<input name="q5a1" type="text" style="text-transform:uppercase;border: 2px solid"><div name="q5a1check" style="display:none;color:red">CEAFBD</div><br>
+<input name="q5a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q5a1check" style="display:none;color:red">CEAFBD</div><br>
 2.　A　料理を　B　間　C　テレビを　D　作っている　E　私が　F　友達は　G　見ていた<br>
-<input name="q6a1" type="text" style="text-transform:uppercase;border: 2px solid"><div name="q6a1check" style="display:none;color:red">EADBFCG</div><br>
+<input name="q6a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q6a1check" style="display:none;color:red">EADBFCG</div><br>
+<br>
+D.　_____に入る言葉を書きなさい。<br><br>
+1.　朝から何も食べていないので、おなかが_____。<br>
+<input name="q7a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q7a1check" style="display:none;color:orange">ついています</div><br>
+2.　学校でガムを_____はいけないことになっている。<br>
+<input name="q8a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q8a1check" style="display:none;color:orange">かんで</div><br>
 <br>
 E.　_____の漢字の読み方を書きなさい。<br><br>
 1.　お<u>弁当</u>の工場でアルバイトをしています。<br>
-<input name="q9a1" type="text" style="text-transform:uppercase;border: 2px solid"><div name="q9a1check" style="display:none;color:red">べんとう</div><br>
+<input name="q9a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q9a1check" style="display:none;color:red">べんとう</div><br>
 2.　<u>野菜</u>は新鮮なら新鮮なほどいいです。<br>
-<input name="q10a1" type="text" style="text-transform:uppercase;border: 2px solid"><div name="q10a1check" style="display:none;color:red">やさい</div><br>
+<input name="q10a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q10a1check" style="display:none;color:red">やさい</div><br>
 <br>
-
+F.　_____の漢字を書きなさい。<br><br>
+1.　<u>ちょうしょく</u>はきちんと取りましょう。<br>
+<input name="q11a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q11a1check" style="display:none;color:red">朝食</div><br>
+2.　<u>なま</u>の魚は食べられないんです。<br>
+<input name="q12a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q12a1check" style="display:none;color:red">生</div><br>
+<br>
 
 <button onclick="showAnswer()">チェックする</button>
 <script>
@@ -59,25 +70,31 @@ function showAnswer() {
   multiplechoice.forEach(function(question) {
     var selected = document.querySelector('input[name=' + question + ']:checked');
     if (selected !== null) {
-      var collections= document.getElementsByName(question + selected.value + "check");
-      if (collections.length > 0) {
-        collections[0].style.display = "inline";
-      }
+      document.getElementsByName(question + selected.value + "check")[0].style.display = "inline";
     }
   })
-  var textbasedquestion = ["q5","q6","q9","q10"];
+  var textbasedquestion = ["q5","q6","q9","q10","q11","q12"];
   textbasedquestion.forEach(function(question) {
-    var collections = document.getElementsByName(question + "a1");
-    if (collections.length > 0) {
-      var input = collections[0].value;
-      if (input.length > 0) {
-        var answerElement = document.getElementsByName(question + "a1check")[0];
-        answerElement.style.color = "red";
-        if (input == answerElement.textContent) {
-          answerElement.style.color = "green";
-        }
-        answerElement.style.display = "inline";
+    var input = document.getElementsByName(question + "a1")[0].value;
+    if (input.length > 0) {
+      var answerElement = document.getElementsByName(question + "a1check")[0];
+      answerElement.style.color = "red";
+      if (input == answerElement.textContent) {
+        answerElement.style.color = "green";
       }
+      answerElement.style.display = "inline";
+    }
+  })
+  var freequestion = ["q7","q8"];
+  freequestion.forEach(function(question) {
+    var input = document.getElementsByName(question + "a1")[0].value;
+    if (input.length > 0) {
+      var answerElement = document.getElementsByName(question + "a1check")[0];
+      answerElement.style.color = "orange";
+      if (input == answerElement.textContent) {
+        answerElement.style.color = "green";
+      }
+      answerElement.style.display = "inline";
     }
   })
 }
