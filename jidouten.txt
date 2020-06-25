@@ -1,4 +1,4 @@
-A．_____の漢字の読み方を選びなさい。<br><br>
+<h3>A．_____の漢字の読み方を選びなさい。</h3><br>
 1．外食はやめて、<u>自炊</u>をすることにしました。</br>
 <input type="radio" id="q1a1" name="q1" value="a1">
 <label for="a1">しすい</label><div name="q1a1check" style="display:none;color:red">X</div><br>
@@ -7,7 +7,7 @@ A．_____の漢字の読み方を選びなさい。<br><br>
 <input type="radio" id="q1a3" name="q1" value="a3">
 <label for="a3">じたき</label><div name="q1a3check" style="display:none;color:red">X</div><br>
 <input type="radio" id="q1a4" name="q1" value="a4">
-<label for="a4">じはん</label><div name="q1a4check" style="display:none;color:red">X</div><br>
+<label for="a4">じはん</label><div name="q1a4check" style="display:none;color:red">X</div><br><br>
 2．<u>冷蔵庫</u>でビールを冷やしておいてください。<br>
 <input type="radio" id="q2a1" name="q2" value="a1">
 <label for="a1">れいとうこ</label><div name="q2a1check" style="display:none;color:red">X</div><br>
@@ -16,9 +16,9 @@ A．_____の漢字の読み方を選びなさい。<br><br>
 <input type="radio" id="q2a3" name="q2" value="a3">
 <label for="a3">れいぞうこ</label><div name="q2a3check" style="display:none;color:green">O</div><br>
 <input type="radio" id="q2a4" name="q2" value="a4">
-<label for="a4">れいぞうこう</label><div name="q2a4check" style="display:none;color:red">X</div><br>
+<label for="a4">れいぞうこう</label><div name="q2a4check" style="display:none;color:red">X</div><br><br>
 <br>
-B．_____の漢字を選びなさい。<br><br>
+<h3>B．_____の漢字を選びなさい。</h3><br>
 1．魚を<u>やいた</u>ら、こげてしまった。</br>
 <input type="radio" id="q3a1" name="q3" value="a1">
 <label for="a1">揚げた</label><div name="q3a1check" style="display:none;color:red">X</div><br>
@@ -27,7 +27,7 @@ B．_____の漢字を選びなさい。<br><br>
 <input type="radio" id="q3a3" name="q3" value="a3">
 <label for="a3">炊いた</label><div name="q3a3check" style="display:none;color:red">X</div><br>
 <input type="radio" id="q3a4" name="q3" value="a4">
-<label for="a4">焼いた</label><div name="q3a4check" style="display:none;color:green">O</div><br>
+<label for="a4">焼いた</label><div name="q3a4check" style="display:none;color:green">O</div><br><br>
 2．疲れた時は、<u>あまい</u>ものがほしくなる。<br>
 <input type="radio" id="q4a1" name="q4" value="a1">
 <label for="a1">甘い</label><div name="q4a1check" style="display:none;color:green">O</div><br>
@@ -36,41 +36,60 @@ B．_____の漢字を選びなさい。<br><br>
 <input type="radio" id="q4a3" name="q4" value="a3">
 <label for="a3">苦い</label><div name="q2a3check" style="display:none;color:red">X</div><br>
 <input type="radio" id="q4a4" name="q4" value="a4">
-<label for="a4">濃い</label><div name="q4a4check" style="display:none;color:red">X</div><br>
+<label for="a4">濃い</label><div name="q4a4check" style="display:none;color:red">X</div><br><br>
 <br>
-C. 次の言葉を並べ替えて文を作りなさい。<br><br>
-1.　A　うちに　B　そうじを　C　友達が　D　してしまおう　E　出かけている　F　部屋の<br>
-<input name="q5a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q5a1check" style="display:none;color:red">CEAFBD</div><br>
-2.　A　料理を　B　間　C　テレビを　D　作っている　E　私が　F　友達は　G　見ていた<br>
-<input name="q6a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q6a1check" style="display:none;color:red">EADBFCG</div><br>
+<h3>C. 次の言葉を並べ替えて文を作りなさい。</h3><br>
+1. <table>
+<tr><td class="cell">A　うちに</td><td class="cell">B　そうじを</td><td class="cell">C　友達が</td></tr>
+<tr><td class="cell">D　してしまおう</td><td class="cell">E　出かけている</td><td class="cell">F　部屋の</td></tr>
+</table><br>
+<input name="q5a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q5a1check" style="display:none;color:red">CEAFBD</div><br><br>
+2.
+<table>
+<tr><td class="cell">A　料理を</td><td class="cell">B　間</td><td class="cell">C　テレビを</td><td class="cell">D　作っている</td></tr>
+<tr><td class="cell">E　私が</td><td class="cell">F　友達は</td><td class="cell">G　見ていた</td></tr>
+</table><br>
+<input name="q6a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q6a1check" style="display:none;color:red">EADBFCG</div><br><br>
 <br>
-D.　_____に入る言葉を書きなさい。<br><br>
-1.　朝から何も食べていないので、おなかが_____。<br>
-<input name="q7a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q7a1check" style="display:none;color:orange">ついています</div><br>
-2.　学校でガムを_____はいけないことになっている。<br>
-<input name="q8a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q8a1check" style="display:none;color:orange">かんで</div><br>
+<h3>D.　_____に入る言葉を書きなさい。</h3><br>
+1.　朝から何も食べていないので、おなかが_____。<br><br>
+<input name="q7a1" type="text" style="text-transform:uppercase;border: 1px solid">
+<div name="q7a1check" style="display:none;color:orange">ついています</div><br><br>
+2.　学校でガムを_____はいけないことになっている。<br><br>
+<input name="q8a1" type="text" style="text-transform:uppercase;border: 1px solid">
+<div name="q8a1check" style="display:none;color:orange">かんで</div><br><br>
 <br>
-E.　_____の漢字の読み方を書きなさい。<br><br>
-1.　お<u>弁当</u>の工場でアルバイトをしています。<br>
-<input name="q9a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q9a1check" style="display:none;color:red">べんとう</div><br>
-2.　<u>野菜</u>は新鮮なら新鮮なほどいいです。<br>
-<input name="q10a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q10a1check" style="display:none;color:red">やさい</div><br>
+<h3>E.　_____の漢字の読み方を書きなさい。</h3><br>
+1.　お<u>弁当</u>の工場でアルバイトをしています。<br><br>
+<input name="q9a1" type="text" style="text-transform:uppercase;border: 1px solid">
+<div name="q9a1check" style="display:none;color:red">べんとう</div><br><br>
+2.　<u>野菜</u>は新鮮なら新鮮なほどいいです。<br><br>
+<input name="q10a1" type="text" style="text-transform:uppercase;border: 1px solid">
+<div name="q10a1check" style="display:none;color:red">やさい</div><br><br>
 <br>
-F.　_____の漢字を書きなさい。<br><br>
-1.　<u>ちょうしょく</u>はきちんと取りましょう。<br>
-<input name="q11a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q11a1check" style="display:none;color:red">朝食</div><br>
-2.　<u>なま</u>の魚は食べられないんです。<br>
-<input name="q12a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q12a1check" style="display:none;color:red">生</div><br>
+<h3>F.　_____の漢字を書きなさい。</h3><br>
+1.　<u>ちょうしょく</u>はきちんと取りましょう。<br><br>
+<input name="q11a1" type="text" style="text-transform:uppercase;border: 1px solid">
+<div name="q11a1check" style="display:none;color:red">朝食</div><br><br>
+2.　<u>なま</u>の魚は食べられないんです。<br><br>
+<input name="q12a1" type="text" style="text-transform:uppercase;border: 1px solid">
+<div name="q12a1check" style="display:none;color:red">生</div><br><br>
 <br>
+<div name="pointsbox" style="font-size:25px;display:none;color:green"></div><br>
 
-<button onclick="showAnswer()">チェックする</button>
+<button style="margin:auto;display:block;border: solid 2px" onclick="showAnswer()">チェックする</button>
 <script>
 function showAnswer() {
+  var points = 0;
   var multiplechoice = ["q1","q2","q3","q4"];
   multiplechoice.forEach(function(question) {
     var selected = document.querySelector('input[name=' + question + ']:checked');
     if (selected !== null) {
-      document.getElementsByName(question + selected.value + "check")[0].style.display = "inline";
+      var element = document.getElementsByName(question + selected.value + "check")[0];
+      element.style.display = "inline";
+      if (element.textContent == "O") {
+        points = points + 1;
+      }
     }
   })
   var textbasedquestion = ["q5","q6","q9","q10","q11","q12"];
@@ -81,6 +100,7 @@ function showAnswer() {
       answerElement.style.color = "red";
       if (input == answerElement.textContent) {
         answerElement.style.color = "green";
+        points = points + 1;
       }
       answerElement.style.display = "inline";
     }
@@ -93,12 +113,21 @@ function showAnswer() {
       answerElement.style.color = "orange";
       if (input == answerElement.textContent) {
         answerElement.style.color = "green";
+        points = points + 1;
       }
       answerElement.style.display = "inline";
     }
   })
+  var totalpoints = multiplechoice.length + textbasedquestion.length + freequestion.length;
+  var pointsbox = document.getElementsByName("pointsbox")[0];
+  pointsbox.style.display = "block";
+  pointsbox.textContent = "結果： " + points + "/" + totalpoints;
 }
 </script>
 
-
-
+<style>
+  td.cell {
+    border: 1px solid;
+    width: 25%;
+  }
+</style
