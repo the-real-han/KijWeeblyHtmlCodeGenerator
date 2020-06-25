@@ -40,14 +40,14 @@
 <br>
 <h3>C. 次の言葉を並べ替えて文を作りなさい。</h3><br>
 1. <table>
-<tr><td class="cell">A　うちに</td><td class="cell">B　そうじを</td><td class="cell">C　友達が</td></tr>
-<tr><td class="cell">D　してしまおう</td><td class="cell">E　出かけている</td><td class="cell">F　部屋の</td></tr>
+<tr><td class="cell">A.うちに</td><td class="cell">B.そうじを</td><td class="cell">C.友達が</td></tr>
+<tr><td class="cell">D.してしまおう</td><td class="cell">E.出かけている</td><td class="cell">F.部屋の</td></tr>
 </table><br>
 <input name="q5a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q5a1check" style="display:none;color:red">CEAFBD</div><br><br>
 2.
 <table>
-<tr><td class="cell">A　料理を</td><td class="cell">B　間</td><td class="cell">C　テレビを</td><td class="cell">D　作っている</td></tr>
-<tr><td class="cell">E　私が</td><td class="cell">F　友達は</td><td class="cell">G　見ていた</td></tr>
+<tr><td class="cell">A.料理を</td><td class="cell">B.間</td><td class="cell">C.テレビを</td><td class="cell">D.作っている</td></tr>
+<tr><td class="cell">E.私が</td><td class="cell">F.友達は</td><td class="cell">G.見ていた</td></tr>
 </table><br>
 <input name="q6a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q6a1check" style="display:none;color:red">EADBFCG</div><br><br>
 <br>
@@ -130,4 +130,4 @@ function showAnswer() {
     border: 1px solid;
     width: 25%;
   }
-</style
+</style>
