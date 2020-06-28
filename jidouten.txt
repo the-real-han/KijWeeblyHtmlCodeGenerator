@@ -43,21 +43,25 @@
 <tr><td class="cell">A.うちに</td><td class="cell">B.そうじを</td><td class="cell">C.友達が</td></tr>
 <tr><td class="cell">D.してしまおう</td><td class="cell">E.出かけている</td><td class="cell">F.部屋の</td></tr>
 </table><br>
-<input name="q5a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q5a1check" style="display:none;color:red">CEAFBD</div><br><br>
+<input name="q5a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q5a1check" style="display:none;color:red">CEAFBD</div><br>
+<div name="q5note" style="display:none;color:blue">友達が出かけているうちに部屋のそうじをしてしまおう</div><br><br>
 2.
 <table>
 <tr><td class="cell">A.料理を</td><td class="cell">B.間</td><td class="cell">C.テレビを</td><td class="cell">D.作っている</td></tr>
 <tr><td class="cell">E.私が</td><td class="cell">F.友達は</td><td class="cell">G.見ていた</td></tr>
 </table><br>
-<input name="q6a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q6a1check" style="display:none;color:red">EADBFCG</div><br><br>
+<input name="q6a1" type="text" style="text-transform:uppercase;border: 1px solid"><div name="q6a1check" style="display:none;color:red">EADBFCG</div><br>
+<div name="q6note" style="display:none;color:blue">私が料理を作っている間友達はテレビを見ていた</div><br><br>
 <br>
 <h3>D.　_____に入る言葉を書きなさい。</h3><br>
 1.　朝から何も食べていないので、おなかが_____。<br><br>
 <input name="q7a1" type="text" style="text-transform:uppercase;border: 1px solid">
-<div name="q7a1check" style="display:none;color:orange">ついています</div><br><br>
+<div name="q7a1check" style="display:none;color:orange">すいています</div><br>
+<div name="q7note" style="display:none;color:blue">***「空いています」や「すいている」などでもいいです。</div><br><br>
 2.　学校でガムを_____はいけないことになっている。<br><br>
 <input name="q8a1" type="text" style="text-transform:uppercase;border: 1px solid">
-<div name="q8a1check" style="display:none;color:orange">かんで</div><br><br>
+<div name="q8a1check" style="display:none;color:orange">かんで</div><br>
+<div name="q8note" style="display:none;color:blue">***「食べて」や「たべて」などでもいいです。</div><br><br>
 <br>
 <h3>E.　_____の漢字の読み方を書きなさい。</h3><br>
 1.　お<u>弁当</u>の工場でアルバイトをしています。<br><br>
@@ -90,35 +94,29 @@ function showAnswer() {
       if (element.textContent == "O") {
         points = points + 1;
       }
+      var note = document.getElementsByName(question + "note");
+      if (note.length > 0) {
+        note[0].style.display = "inline";
+      }
     }
   })
-  var textbasedquestion = ["q5","q6","q9","q10","q11","q12"];
+  var textbasedquestion = ["q5","q6","q9","q10","q11","q12","q7","q8"];
   textbasedquestion.forEach(function(question) {
     var input = document.getElementsByName(question + "a1")[0].value;
     if (input.length > 0) {
       var answerElement = document.getElementsByName(question + "a1check")[0];
-      answerElement.style.color = "red";
-      if (input == answerElement.textContent) {
+      if (input.trim().toUpperCase() == answerElement.textContent) {
         answerElement.style.color = "green";
         points = points + 1;
       }
       answerElement.style.display = "inline";
-    }
-  })
-  var freequestion = ["q7","q8"];
-  freequestion.forEach(function(question) {
-    var input = document.getElementsByName(question + "a1")[0].value;
-    if (input.length > 0) {
-      var answerElement = document.getElementsByName(question + "a1check")[0];
-      answerElement.style.color = "orange";
-      if (input == answerElement.textContent) {
-        answerElement.style.color = "green";
-        points = points + 1;
+      var note = document.getElementsByName(question + "note");
+      if (note.length > 0) {
+        note[0].style.display = "inline";
       }
-      answerElement.style.display = "inline";
     }
   })
-  var totalpoints = multiplechoice.length + textbasedquestion.length + freequestion.length;
+  var totalpoints = multiplechoice.length + textbasedquestion.length;
   var pointsbox = document.getElementsByName("pointsbox")[0];
   pointsbox.style.display = "block";
   pointsbox.textContent = "結果： " + points + "/" + totalpoints;
