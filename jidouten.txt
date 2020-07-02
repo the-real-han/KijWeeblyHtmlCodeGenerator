@@ -79,13 +79,32 @@
 <input name="q12a1" type="text" style="text-transform:uppercase;border: 1px solid">
 <div name="q12a1check" style="display:none;color:red">生</div><br><br>
 <br>
+<br>
+<h3>G.　音を聞いて正しものを選びなさい。</h3><br>
+1. <audio controls>
+<source src="https://kij-la.weebly.com/uploads/1/3/2/5/132551079/itte.wav">
+Your browser does not support the audio element.
+</audio><br><br>
+<input type="radio" id="q13a1" name="q13" value="a1">
+<label for="a1">いて</label><div name="q13a1check" style="display:none;color:red">X</div><br>
+<input type="radio" id="q13a2" name="q13" value="a2">
+<label for="a2">いって</label><div name="q13a2check" style="display:none;color:green">O</div><br><br>
+2. <audio controls>
+<source src="https://kij-la.weebly.com/uploads/1/3/2/5/132551079/obasan.wav">
+Your browser does not support the audio element.
+</audio><br><br>
+<input type="radio" id="q14a1" name="q14" value="a1">
+<label for="a1">おばさん</label><div name="q14a1check" style="display:none;color:green">O</div><br>
+<input type="radio" id="q14a2" name="q14" value="a2">
+<label for="a2">おばあさん</label><div name="q14a2check" style="display:none;color:red">X</div><br><br>
+<br>
 <div name="pointsbox" style="font-size:25px;display:none;color:green"></div><br>
 
 <button style="margin:auto;display:block;border: solid 2px" onclick="showAnswer()">チェックする</button>
 <script>
 function showAnswer() {
   var points = 0;
-  var multiplechoice = ["q1","q2","q3","q4"];
+  var multiplechoice = ["q1","q2","q3","q4","q13","q14"];
   multiplechoice.forEach(function(question) {
     var selected = document.querySelector('input[name=' + question + ']:checked');
     if (selected !== null) {
