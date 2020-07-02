@@ -1,0 +1,63 @@
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addTitle()">Add Section Label</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addSelectionQuestion()">Add Selection Question</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addTypingQuestion()">Add Typing Question</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addArrangingQuestion()">Add Arranging Question</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addAudioQuestion()">Add Audio question</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="finish()">Finish</button> 
+<br><br>
+<div name="visualbox"></div>
+<br><br>
+<textarea name="codebox" style="width:90%;padding:1em;border:1px solid" rows=25></textarea>
+
+<script>
+var currentQuestion = 0;
+var selectionQuestion = [];
+var textbaseQuestion = [];
+var codeboxElement = document.getElementsByName("codebox")[0];
+var visualElement= document.getElementsByName("visualbox")[0];
+
+function addTitle() {
+  var titleElement = document.createElement('h3');
+  titleElement.innerText = prompt("Section label");
+  visualElement.appendChild(titleElement);
+  visualElement.appendChild(document.createElement('br'));
+  codeboxElement.value += titleElement.outterHTML + "<br>" + '\r\n';
+}
+
+function addTypingQuestion() {
+  currentQuestion += 1;
+  var question = prompt("Question text");
+  var answer = promt("Correct answer");
+  var note = promt("Any note?");
+  visualElement.innerHTML += question;
+  visualElement.appendChild(document.createElement('br'));
+  visualElement.appendChild(document.createElement('br'));
+  codeboxElement.value += question + "<br><br>" + '\r\n';
+  
+  var inputElement = document.createElement('input');
+  inputElement.name = currentQuestion + "a1";
+  inputElement.type = 'text';
+  inputElement.style = 'text-transform:uppercase;border: 1px solid';
+  visualElement.appendChild(inputElement);
+  codeboxElement.value += inputElement.outterHTML + '\r\n';
+  
+  var answerElement = document.createElement('div');
+  answerElement.name = currentQuestion + "a1check";
+  answerElement.style = 'display:none;color:orange';
+  answerElement.textContent = answer;
+  visualElement.appendChild(answerElement);
+  visualElement.appendChild(document.createElement('br'));
+  codeboxElement.value += answerElement.outterHTML + "<br>" + '\r\n';
+
+  if (note.length > 0) {
+    var noteElement = document.createElement('div');
+    noteElement.name = currentQuestion + "note";
+    noteElement.style = 'display:none;color:blue';
+    noteElement.textContent = note;
+    visualElement.appendChild(noteElement);
+    visualElement.appendChild(document.createElement('br'));
+    visualElement.appendChild(document.createElement('br'));
+    codeboxElement.value += noteElement.outterHTML + "<br><br>" + '\r\n';
+  }
+}
+</script>
