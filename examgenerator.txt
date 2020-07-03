@@ -10,38 +10,7 @@ function addSelectionQuestion() {
   var question = prompt("Question text");
   if (question.length > 0) {
     addQuestionText(question);
-    var num = parseInt(prompt("How many choices?"));
-    var answers = [];
-    for (let i=1; i<=num; i++) {
-      answers.push(prompt("Choice " + i));
-    }
-    var correct = parseInt(prompt("Correct choice?"));
-    for (let i=1; i<=num; i++) {
-      var input = document.createElement("input");
-      input.type = "radio";
-      input.id = "q" + currentQuestion + "a" + i;
-      input.setAttribute('name', "q" + currentQuestion);
-      input.setAttribute('value', "a" + i);
-      var label = document.createElement("label");
-      label.setAttribute('for', "a" + i);
-      label.appendChild(document.createTextNode(answers[i-1]));
-      var div = document.createElement("div");
-      div.setAttribute('name', "q" + currentQuestion + "a" + i + "check");
-      if (i == correct) {
-        div.style = "display:none;color:green";
-        div.textContent = "O";
-      } else {
-        div.style = "display:none;color:red";
-        div.textContent = "X";
-      }
-      visualElement.appendChild(input);
-      visualElement.appendChild(label);
-      visualElement.appendChild(div);
-      addBr();
-      codeboxElement.value += input.outerHTML + '\r\n';
-      codeboxElement.value += label.outerHTML + '\r\n';
-      codeboxElement.value += div.outerHTML + "<br>" + '\r\n';
-    }
+    addMultipleChoice();
     addNote(prompt("Any note?"));
     selectionQuestion.push("q" + currentQuestion);
   }
@@ -49,9 +18,22 @@ function addSelectionQuestion() {
 
 function addAudioQuestion() {
   currentQuestion += 1;
-  
-  addNote(prompt("Any note?"));
-  selectionQuestion.push("q" + currentQuestion);
+  var url = prompt("Audio URL");
+  if (url.length > 0) {
+    var audio = document.createElement("audio");
+    audio.controls = true;
+    var source = document.createElement("source");
+    source.setAttribute('src', url);
+    audio.appendChild(source);
+    audio.appendChild(document.createTextNode("Your browser does not support the audio element."));
+    visualElement.appendChild(audio);
+    addBr();
+    addBr();
+    codeboxElement.value += audio.outerHTML + "<br><br>" + '\r\n';
+    addMultipleChoice();
+    addNote(prompt("Any note?"));
+    selectionQuestion.push("q" + currentQuestion);
+  }
 }
 
 function addArrangingQuestion() {
@@ -114,6 +96,41 @@ function addTypingQuestion() {
   	addAnswer(prompt("Correct answer"));
   	addNote(prompt("Any note?"));
   	textbaseQuestion.push("q" + currentQuestion);
+  }
+}
+
+function addMultipleChoice() {
+  var num = parseInt(prompt("How many choices?"));
+  var answers = [];
+  for (let i=1; i<=num; i++) {
+    answers.push(prompt("Choice " + i));
+  }
+  var correct = parseInt(prompt("Correct choice?"));
+  for (let i=1; i<=num; i++) {
+    var input = document.createElement("input");
+    input.type = "radio";
+    input.id = "q" + currentQuestion + "a" + i;
+    input.setAttribute('name', "q" + currentQuestion);
+    input.setAttribute('value', "a" + i);
+    var label = document.createElement("label");
+    label.setAttribute('for', "a" + i);
+    label.appendChild(document.createTextNode(answers[i-1]));
+    var div = document.createElement("div");
+    div.setAttribute('name', "q" + currentQuestion + "a" + i + "check");
+    if (i == correct) {
+      div.style = "display:none;color:green";
+      div.textContent = "O";
+    } else {
+      div.style = "display:none;color:red";
+      div.textContent = "X";
+    }
+    visualElement.appendChild(input);
+    visualElement.appendChild(label);
+    visualElement.appendChild(div);
+    addBr();
+    codeboxElement.value += input.outerHTML + '\r\n';
+    codeboxElement.value += label.outerHTML + '\r\n';
+    codeboxElement.value += div.outerHTML + "<br>" + '\r\n';
   }
 }
 
