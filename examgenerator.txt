@@ -13,7 +13,7 @@ function addSelectionQuestion() {
   for (let i=1; i<=num; i++) {
     answers.push(prompt("Choice " + i));
   }
-  var correct = parseInt(prompt("Correct choice?");
+  var correct = parseInt(prompt("Correct choice?"));
   for (let i=1; i<=num; i++) {
     var input = document.createElement("input");
     input.type = "radio";
