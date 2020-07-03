@@ -1,14 +1,3 @@
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addTitle()">Add Section Label</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addSelectionQuestion()">Add Selection Question</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addTypingQuestion()">Add Typing Question</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addArrangingQuestion()">Add Arranging Question</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addAudioQuestion()">Add Audio question</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="finish()">Finish</button> 
-<br><br>
-<div name="visualbox"></div>
-<br><br>
-<textarea name="codebox" style="width:90%;padding:1em;border:1px solid" rows=25></textarea>
-
 <script>
 var currentQuestion = 0;
 var selectionQuestion = [];
@@ -16,49 +5,150 @@ var textbaseQuestion = [];
 var codeboxElement = document.getElementsByName("codebox")[0];
 var visualElement= document.getElementsByName("visualbox")[0];
 
+function addSelectionQuestion() {
+  currentQuestion += 1;
+  addQuestionText(prompt("Question text"));
+  var num = parseInt(prompt("How many choices?");
+  var answers = [];
+  for (let i=1; i<=num; i++) {
+    answers.push(prompt("Choice " + i));
+  }
+  var correct = parseInt(prompt("Correct choice?");
+  for (let i=1; i<=num; i++) {
+    var input = document.createElement("input");
+    input.type = "radio";
+    input.id = "q" + currentQuestion + "a" + i;
+    input.setAttribute('name', "q" + currentQuestion);
+    input.setAttribute('value', "a" + i);
+    var label = document.createElement("label");
+    label.setAttribute('for', "a" + i);
+    label.appendChild(document.createTextNode(parts[i-1]));
+    var div = document.createElement("div");
+    div.setAttribute('name', "q" + currentQuestion + "a" + i + "check");
+    if (i == correct) {
+      div.style = "display:none;color:green";
+      div.textContent = "O";
+    } else {
+      div.style = "display:none;color:red";
+      div.textContent = "X";
+    }
+    visualElement.appendChild(input);
+    visualElement.appendChild(label);
+    visualElement.appendChild(div);
+    addBr();
+    codeboxElement.value += input.outerHTML + '\r\n';
+    codeboxElement.value += label.outerHTML + '\r\n';
+    codeboxElement.value += div.outerHTML + "<br>" + '\r\n';
+  }
+  addNote(prompt("Any note?"));
+  selectionQuestion.push("q" + currentQuestion);
+}
+
+<div name="q2a1check" style="display:none;color:red">X</div><br>
+
+
+function addAudioQuestion() {
+  currentQuestion += 1;
+  
+  addNote(prompt("Any note?"));
+  selectionQuestion.push("q" + currentQuestion);
+}
+
+function addArrangingQuestion() {
+  currentQuestion += 1;
+  var num = parseInt(prompt("How many parts (maximum 8)?"));
+  var parts = [];
+  for (let i=1; i<=num; i++) {
+  	parts.push(prompt("Part " + i + "/" + num));
+  }
+  var tableElement = document.createElement("table");
+  var tr1Element = document.createElement("tr");
+  var tr2Element = document.createElement("tr");
+  var cutoff = 3;
+  if (num > 6) {
+    cutoff = 4;
+  }
+  for (let i=0; i<cutoff; i++) {
+    var tdElement = document.createElement("td");
+    tdElement.style = "border: 1px solid;width: 25%;";
+    tdElement.appendChild(document.createTextNode(parts[i]));
+    tr1Element.appendChild(tdElement);
+  }
+  for (let i=cutoff; i<num; i++) {
+    var tdElement = document.createElement("td");
+    tdElement.style = "border: 1px solid;width: 25%;";
+    tdElement.appendChild(document.createTextNode(parts[i]));
+    tr2Element.appendChild(tdElement);
+  }
+  tableElement.appendChild(tr1Element);
+  tableElement.appendChild(tr2Element);
+  visualElement.appendChild(tableElement);
+  addBr();
+  codeboxElement.value += tableElement.outerHTML + "<br>" + '\r\n';
+  addInputBox();
+  addAnswer(prompt("Correct answer"));
+  addNote(prompt("Any note?"));
+  textbaseQuestion.push("q" + currentQuestion);
+}
+
 function addTitle() {
   var titleElement = document.createElement('h3');
   titleElement.innerText = prompt("Section label");
   visualElement.appendChild(titleElement);
-  visualElement.appendChild(document.createElement('br'));
+  addBr();
   codeboxElement.value += titleElement.outerHTML + "<br>" + '\r\n';
 }
 
 function addTypingQuestion() {
   currentQuestion += 1;
-  var question = prompt("Question text");
-  var answer = prompt("Correct answer");
-  var note = prompt("Any note?");
+  addQuestionText(prompt("Question text"));
+  addInputBox();
+  addAnswer(prompt("Correct answer"));
+  addNote(prompt("Any note?"));
+  textbaseQuestion.push("q" + currentQuestion);
+}
+
+function addBr() {
+  visualElement.appendChild(document.createElement('br'));
+}
+
+function addQuestionText(question) {
   visualElement.innerHTML += question;
-  visualElement.appendChild(document.createElement('br'));
-  visualElement.appendChild(document.createElement('br'));
+  addBr();
+  addBr();
   codeboxElement.value += question + "<br><br>" + '\r\n';
-  
+}
+
+function addInputBox() {
   var inputElement = document.createElement('input');
   inputElement.name = "q" + currentQuestion + "a1";
   inputElement.type = 'text';
   inputElement.style = 'text-transform:uppercase;border: 1px solid';
   visualElement.appendChild(inputElement);
   codeboxElement.value += inputElement.outerHTML + '\r\n';
-  
+}
+
+function addAnswer(answer) {
   var answerElement = document.createElement('div');
   answerElement.setAttribute('name', "q" + currentQuestion + "a1check");
   answerElement.style = 'display:none;color:orange';
   answerElement.textContent = answer;
   visualElement.appendChild(answerElement);
-  visualElement.appendChild(document.createElement('br'));
+  addBr();
   codeboxElement.value += answerElement.outerHTML + "<br>" + '\r\n';
+}
 
+function addNote(note) {
   if (note.length > 0) {
     var noteElement = document.createElement('div');
     noteElement.setAttribute('name', "q" + currentQuestion + "note");
     noteElement.style = 'display:none;color:blue';
     noteElement.textContent = note;
     visualElement.appendChild(noteElement);
-    visualElement.appendChild(document.createElement('br'));
-    visualElement.appendChild(document.createElement('br'));
-    codeboxElement.value += noteElement.outerHTML + "<br><br>" + '\r\n';
+    addBr();
+    codeboxElement.value += noteElement.outerHTML + "<br>";
   }
-  textbaseQuestion.push("q" + currentQuestion);
+  addBr();
+  codeboxElement.value += "<br>" + '\r\n';
 }
 </script>
