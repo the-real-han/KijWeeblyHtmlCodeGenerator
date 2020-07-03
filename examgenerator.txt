@@ -21,43 +21,44 @@ function addTitle() {
   titleElement.innerText = prompt("Section label");
   visualElement.appendChild(titleElement);
   visualElement.appendChild(document.createElement('br'));
-  codeboxElement.value += titleElement.outterHTML + "<br>" + '\r\n';
+  codeboxElement.value += titleElement.outerHTML + "<br>" + '\r\n';
 }
 
 function addTypingQuestion() {
   currentQuestion += 1;
   var question = prompt("Question text");
-  var answer = promt("Correct answer");
-  var note = promt("Any note?");
+  var answer = prompt("Correct answer");
+  var note = prompt("Any note?");
   visualElement.innerHTML += question;
   visualElement.appendChild(document.createElement('br'));
   visualElement.appendChild(document.createElement('br'));
   codeboxElement.value += question + "<br><br>" + '\r\n';
   
   var inputElement = document.createElement('input');
-  inputElement.name = currentQuestion + "a1";
+  inputElement.name = "q" + currentQuestion + "a1";
   inputElement.type = 'text';
   inputElement.style = 'text-transform:uppercase;border: 1px solid';
   visualElement.appendChild(inputElement);
-  codeboxElement.value += inputElement.outterHTML + '\r\n';
+  codeboxElement.value += inputElement.outerHTML + '\r\n';
   
   var answerElement = document.createElement('div');
-  answerElement.name = currentQuestion + "a1check";
+  answerElement.setAttribute('name', "q" + currentQuestion + "a1check");
   answerElement.style = 'display:none;color:orange';
   answerElement.textContent = answer;
   visualElement.appendChild(answerElement);
   visualElement.appendChild(document.createElement('br'));
-  codeboxElement.value += answerElement.outterHTML + "<br>" + '\r\n';
+  codeboxElement.value += answerElement.outerHTML + "<br>" + '\r\n';
 
   if (note.length > 0) {
     var noteElement = document.createElement('div');
-    noteElement.name = currentQuestion + "note";
+    noteElement.setAttribute('name', "q" + currentQuestion + "note");
     noteElement.style = 'display:none;color:blue';
     noteElement.textContent = note;
     visualElement.appendChild(noteElement);
     visualElement.appendChild(document.createElement('br'));
     visualElement.appendChild(document.createElement('br'));
-    codeboxElement.value += noteElement.outterHTML + "<br><br>" + '\r\n';
+    codeboxElement.value += noteElement.outerHTML + "<br><br>" + '\r\n';
   }
+  textbaseQuestion.push("q" + currentQuestion);
 }
 </script>
