@@ -44,9 +44,6 @@ function addSelectionQuestion() {
   selectionQuestion.push("q" + currentQuestion);
 }
 
-<div name="q2a1check" style="display:none;color:red">X</div><br>
-
-
 function addAudioQuestion() {
   currentQuestion += 1;
   
