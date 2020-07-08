@@ -152,4 +152,9 @@ function showAnswer() {
   pointsbox.style.display = "block";
   pointsbox.textContent = "結果： " + points + "/" + totalpoints;
 }
+
+function mapString(input) {
+  return tr(input, "ＡａＢｂＣｃＤｄＥｅＦｆＧｇＨｈＩｉＪｊＫｋＬｌＭｍＮｎＯｏＰｐＱｑＲｒＳｓＴｔＵｕＶｖＷｗＸｘＹｙＺｚ　", "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz ");
+}
+
 </script>
