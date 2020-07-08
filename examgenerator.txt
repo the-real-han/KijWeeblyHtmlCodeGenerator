@@ -182,7 +182,7 @@ function addMultipleChoice() {
     input.setAttribute('name', "q" + currentQuestion);
     input.setAttribute('value', "a" + i);
     var label = document.createElement("label");
-    label.setAttribute('for', "a" + i);
+    label.setAttribute('for', input.id);
     label.appendChild(document.createTextNode(answers[i-1]));
     var div = document.createElement("div");
     div.setAttribute('name', "q" + currentQuestion + "a" + i + "check");
