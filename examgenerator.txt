@@ -74,7 +74,7 @@ function finish() {
 
 function addSelectionQuestion() {
   var question = prompt("Question text");
-  if ((question ! null) && (question.length > 0)) {
+  if ((question != null) && (question.length > 0)) {
   　currentQuestion += 1;
     addQuestionText(question);
     addMultipleChoice();
@@ -85,7 +85,7 @@ function addSelectionQuestion() {
 
 function addAudioQuestion() {
   var url = prompt("Audio URL");
-  if ((url ! null) && (url.length > 0)) {
+  if ((url != null) && (url.length > 0)) {
   　currentQuestion += 1;
     var audio = document.createElement("audio");
     audio.controls = true;
@@ -105,7 +105,7 @@ function addAudioQuestion() {
 
 function addArrangingQuestion() {
   var input = prompt("How many parts (maximum 8)?");
-  if ((input ! null) && (input.length > 0)) {
+  if ((input != null) && (input.length > 0)) {
   　currentQuestion += 1;
     var num = mapNumber(input);
     var parts = [];
@@ -145,7 +145,7 @@ function addArrangingQuestion() {
 
 function addTitle() {
   var title = prompt("Section label");
-  if ((title ! null) && (title.length > 0)) {
+  if ((title != null) && (title.length > 0)) {
     var titleElement = document.createElement('h3');
     titleElement.innerText = title;
     visualElement.appendChild(titleElement);
@@ -156,7 +156,7 @@ function addTitle() {
 
 function addTypingQuestion() {
   var question = prompt("Question text");
-  if ((question ! null) && (question.length > 0)) {
+  if ((question != null) && (question.length > 0)) {
   　currentQuestion += 1;
   	addQuestionText(question);
   	addInputBox();
@@ -231,7 +231,7 @@ function addAnswer(answer) {
 }
 
 function addNote(note) {
-  if ((note ! null) && (note.length > 0)) {
+  if ((note != null) && (note.length > 0)) {
     var noteElement = document.createElement('div');
     noteElement.setAttribute('name', "q" + currentQuestion + "note");
     noteElement.style = 'display:none;color:blue';
