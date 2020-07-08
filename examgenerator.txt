@@ -4,6 +4,7 @@
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addArrangingQuestion()">Add Arranging Question</button> 
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addAudioQuestion()">Add Audio question</button> 
 <button style="margin:auto;display:inline;border:solid 1px" onclick="finish()">Finish</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="clear()">Clear</button> 
 <br><br>
 <div name="visualbox"></div>
 <br><br>
@@ -61,10 +62,14 @@ var visualElement= document.getElementsByName("visualbox")[0];
 var script = codeboxElement.value;
 codeboxElement.value = '';
 
+function clear() {
+  currentQuestion = 0;
+  codeboxElement.value = '';
+  visualElement.innerHTML = '';
+}
+
 function finish() {
-  script = script.replace("//multiplechoice", "var multiplechoice = ['" + selectionQuestion.join("','") + "'];");
-  script = script.replace("//textbasedquestion", "var textbasedquestion = ['" + textbaseQuestion.join("','") + "'];");
-  codeboxElement.value += script;
+  codeboxElement.value += script.replace("//multiplechoice", "var multiplechoice = ['" + selectionQuestion.join("','") + "'];").replace("//textbasedquestion", "var textbasedquestion = ['" + textbaseQuestion.join("','") + "'];");
 }
 
 function addSelectionQuestion() {
@@ -220,7 +225,7 @@ function addAnswer(answer) {
   var answerElement = document.createElement('div');
   answerElement.setAttribute('name', "q" + currentQuestion + "a1check");
   answerElement.style = 'display:none;color:orange';
-  answerElement.textContent = answer;
+  answerElement.textContent = answer.trim().toUpperCase();
   visualElement.appendChild(answerElement);
   addBr();
   codeboxElement.value += answerElement.outerHTML + "<br>" + '\r\n';
