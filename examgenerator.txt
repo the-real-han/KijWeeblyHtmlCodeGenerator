@@ -56,6 +56,20 @@ function mapString(input) {
   return tr(input, "ＡａＢｂＣｃＤｄＥｅＦｆＧｇＨｈＩｉＪｊＫｋＬｌＭｍＮｎＯｏＰｐＱｑＲｒＳｓＴｔＵｕＶｖＷｗＸｘＹｙＺｚ　", "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz ");
 }
 
+function tr( text, search, replace ) {
+  // Make the search string a regex.
+  var regex = RegExp( '[' + search + ']', 'g' );
+  var t = text.replace( regex, 
+          function( chr ) {
+              // Get the position of the found character in the search string.
+              var ind = search.indexOf( chr );
+              // Get the corresponding character from the replace string.
+              var r = replace.charAt( ind );
+              return r;
+          } );
+  return t;
+}
+
 </script></textarea>
 
 <script>
