@@ -159,6 +159,8 @@ function addTypingQuestion() {
   if ((question != null) && (question.length > 0)) {
   　currentQuestion += 1;
   	addQuestionText(question);
+    addBr();
+    codeboxElement.value += "<br>" + '\r\n';
   	addInputBox();
   	addAnswer(prompt("Correct answer"));
   	addNote(prompt("Any note?"));
