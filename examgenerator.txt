@@ -152,9 +152,10 @@ function addArrangingQuestion() {
     }
     tableElement.appendChild(tr1Element);
     tableElement.appendChild(tr2Element);
+    codeboxElement.value += tableElement.outerHTML + "<br>" + '\r\n';
+    tableElement.style = "border: 1px solid;width: 25%;margin: 0 auto;";
     visualElement.appendChild(tableElement);
     addBr();
-    codeboxElement.value += tableElement.outerHTML + "<br>" + '\r\n';
     addInputBox();
     addAnswer(prompt("Correct answer"));
     addNote(prompt("Any note?"));
