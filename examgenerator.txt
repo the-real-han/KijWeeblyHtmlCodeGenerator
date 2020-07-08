@@ -231,12 +231,14 @@ function addAnswer(answer) {
 }
 
 function addNote(note) {
+  alert(note + note.length);
   if ((note != null) && (note.length > 0)) {
     var noteElement = document.createElement('div');
     noteElement.setAttribute('name', "q" + currentQuestion + "note");
     noteElement.style = 'display:none;color:blue';
     noteElement.textContent = note;
     visualElement.appendChild(noteElement);
+    codeboxElement.value += noteElement.outerHTML;
   }
   addBr();
   codeboxElement.value += "<br>" + '\r\n';
