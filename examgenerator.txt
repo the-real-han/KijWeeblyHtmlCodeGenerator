@@ -4,7 +4,7 @@
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addArrangingQuestion()">Add Arranging Question</button> 
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addAudioQuestion()">Add Audio question</button> 
 <button style="margin:auto;display:inline;border:solid 1px" onclick="finish()">Finish</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="clear()">Clear</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="clearField()">Clear</button> 
 <br><br>
 <div name="visualbox"></div>
 <br><br>
@@ -35,7 +35,7 @@ function showAnswer() {
     var input = document.getElementsByName(question + "a1")[0].value;
     if (input.length > 0) {
       var answerElement = document.getElementsByName(question + "a1check")[0];
-      if (input.trim().toUpperCase() == answerElement.textContent) {
+      if (mapString(input).trim().toUpperCase() == answerElement.textContent) {
         answerElement.style.color = "green";
         points = points + 1;
       }
@@ -62,7 +62,7 @@ var visualElement= document.getElementsByName("visualbox")[0];
 var script = codeboxElement.value;
 codeboxElement.value = '';
 
-function clear() {
+function clearField() {
   currentQuestion = 0;
   codeboxElement.value = '';
   visualElement.innerHTML = '';
@@ -73,9 +73,9 @@ function finish() {
 }
 
 function addSelectionQuestion() {
-  currentQuestion += 1;
   var question = prompt("Question text");
-  if (question.length > 0) {
+  if ((question ! null) && (question.length > 0)) {
+  　currentQuestion += 1;
     addQuestionText(question);
     addMultipleChoice();
     addNote(prompt("Any note?"));
@@ -84,9 +84,9 @@ function addSelectionQuestion() {
 }
 
 function addAudioQuestion() {
-  currentQuestion += 1;
   var url = prompt("Audio URL");
-  if (url.length > 0) {
+  if ((url ! null) && (url.length > 0)) {
+  　currentQuestion += 1;
     var audio = document.createElement("audio");
     audio.controls = true;
     var source = document.createElement("source");
@@ -104,10 +104,10 @@ function addAudioQuestion() {
 }
 
 function addArrangingQuestion() {
-  currentQuestion += 1;
   var input = prompt("How many parts (maximum 8)?");
-  if (input.length > 0) {
-    var num = parseInt(input);
+  if ((input ! null) && (input.length > 0)) {
+  　currentQuestion += 1;
+    var num = mapNumber(input);
     var parts = [];
     for (let i=1; i<=num; i++) {
       parts.push(prompt("Part " + i + "/" + num));
@@ -145,7 +145,7 @@ function addArrangingQuestion() {
 
 function addTitle() {
   var title = prompt("Section label");
-  if (title.length > 0) {
+  if ((title ! null) && (title.length > 0)) {
     var titleElement = document.createElement('h3');
     titleElement.innerText = title;
     visualElement.appendChild(titleElement);
@@ -155,9 +155,9 @@ function addTitle() {
 }
 
 function addTypingQuestion() {
-  currentQuestion += 1;
   var question = prompt("Question text");
-  if (question.length > 0) {
+  if ((question ! null) && (question.length > 0)) {
+  　currentQuestion += 1;
   	addQuestionText(question);
   	addInputBox();
   	addAnswer(prompt("Correct answer"));
@@ -167,12 +167,12 @@ function addTypingQuestion() {
 }
 
 function addMultipleChoice() {
-  var num = parseInt(prompt("How many choices?"));
+  var num = mapNumber(prompt("How many choices?"));
   var answers = [];
   for (let i=1; i<=num; i++) {
     answers.push(prompt("Choice " + i));
   }
-  var correct = parseInt(prompt("Correct choice?"));
+  var correct = mapNumber(prompt("Correct choice?"));
   for (let i=1; i<=num; i++) {
     var input = document.createElement("input");
     input.type = "radio";
@@ -208,8 +208,7 @@ function addBr() {
 function addQuestionText(question) {
   visualElement.innerHTML += question;
   addBr();
-  addBr();
-  codeboxElement.value += question + "<br><br>" + '\r\n';
+  codeboxElement.value += question + "<br>" + '\r\n';
 }
 
 function addInputBox() {
@@ -224,24 +223,45 @@ function addInputBox() {
 function addAnswer(answer) {
   var answerElement = document.createElement('div');
   answerElement.setAttribute('name', "q" + currentQuestion + "a1check");
-  answerElement.style = 'display:none;color:orange';
-  answerElement.textContent = answer.trim().toUpperCase();
+  answerElement.style = 'display:none;color:red';
+  answerElement.textContent = mapString(answer).trim().toUpperCase();
   visualElement.appendChild(answerElement);
   addBr();
   codeboxElement.value += answerElement.outerHTML + "<br>" + '\r\n';
 }
 
 function addNote(note) {
-  if (note.length > 0) {
+  if ((note ! null) && (note.length > 0)) {
     var noteElement = document.createElement('div');
     noteElement.setAttribute('name', "q" + currentQuestion + "note");
     noteElement.style = 'display:none;color:blue';
     noteElement.textContent = note;
     visualElement.appendChild(noteElement);
-    addBr();
-    codeboxElement.value += noteElement.outerHTML + "<br>";
   }
   addBr();
   codeboxElement.value += "<br>" + '\r\n';
 }
+
+function mapNumber(input) {
+  return parseInt(tr(input, "０１２３４５６７８９　", "0123456789 "));
+}
+
+function mapString(input) {
+  return tr(input, "ＡａＢｂＣｃＤｄＥｅＦｆＧｇＨｈＩｉＪｊＫｋＬｌＭｍＮｎＯｏＰｐＱｑＲｒＳｓＴｔＵｕＶｖＷｗＸｘＹｙＺｚ　", "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz ");
+}
+
+function tr( text, search, replace ) {
+  // Make the search string a regex.
+  var regex = RegExp( '[' + search + ']', 'g' );
+  var t = text.replace( regex, 
+          function( chr ) {
+              // Get the position of the found character in the search string.
+              var ind = search.indexOf( chr );
+              // Get the corresponding character from the replace string.
+              var r = replace.charAt( ind );
+              return r;
+          } );
+  return t;
+}
+
 </script>
