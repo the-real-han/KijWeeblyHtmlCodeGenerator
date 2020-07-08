@@ -1,10 +1,10 @@
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addTitle()">Add Section Label</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addSelectionQuestion()">Add Selection Question</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addTypingQuestion()">Add Typing Question</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addArrangingQuestion()">Add Arranging Question</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="addAudioQuestion()">Add Audio question</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="finish()">Finish</button> 
-<button style="margin:auto;display:inline;border:solid 1px" onclick="clearField()">Clear</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addTitle()">部分話題</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addSelectionQuestion()">択一問題</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addTypingQuestion()">入力問題</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addArrangingQuestion()">組立問題</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="addAudioQuestion()">聴解</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="finish()">仕上</button> 
+<button style="margin:auto;display:inline;border:solid 1px" onclick="clearField()">虐殺！</button> 
 <br><br>
 <div name="visualbox"></div>
 <br><br>
@@ -92,18 +92,18 @@ function finish() {
 }
 
 function addSelectionQuestion() {
-  var question = prompt("Question text");
+  var question = prompt("内容");
   if ((question != null) && (question.length > 0)) {
   　currentQuestion += 1;
     addQuestionText(question);
     addMultipleChoice();
-    addNote(prompt("Any note?"));
+    addNote(prompt("メモ"));
     selectionQuestion.push("q" + currentQuestion);
   }
 }
 
 function addAudioQuestion() {
-  var url = prompt("Audio URL");
+  var url = prompt("ファイルURL");
   if ((url != null) && (url.length > 0)) {
   　currentQuestion += 1;
     var audio = document.createElement("audio");
@@ -117,19 +117,19 @@ function addAudioQuestion() {
     addBr();
     codeboxElement.value += audio.outerHTML + "<br><br>" + '\r\n';
     addMultipleChoice();
-    addNote(prompt("Any note?"));
+    addNote(prompt("メモ"));
     selectionQuestion.push("q" + currentQuestion);
   }
 }
 
 function addArrangingQuestion() {
-  var input = prompt("How many parts (maximum 8)?");
+  var input = prompt("分はいくつ （８以下）?");
   if ((input != null) && (input.length > 0)) {
   　currentQuestion += 1;
     var num = mapNumber(input);
     var parts = [];
     for (let i=1; i<=num; i++) {
-      parts.push(prompt("Part " + i + "/" + num));
+      parts.push(prompt("分 " + i + "/" + num));
     }
     var tableElement = document.createElement("table");
     var tr1Element = document.createElement("tr");
@@ -157,14 +157,14 @@ function addArrangingQuestion() {
     visualElement.appendChild(tableElement);
     addBr();
     addInputBox();
-    addAnswer(prompt("Correct answer"));
-    addNote(prompt("Any note?"));
+    addAnswer(prompt("答え"));
+    addNote(prompt("メモ"));
     textbaseQuestion.push("q" + currentQuestion);
   }
 }
 
 function addTitle() {
-  var title = prompt("Section label");
+  var title = prompt("部分話題");
   if ((title != null) && (title.length > 0)) {
     var titleElement = document.createElement('h3');
     titleElement.innerText = title;
@@ -175,26 +175,26 @@ function addTitle() {
 }
 
 function addTypingQuestion() {
-  var question = prompt("Question text");
+  var question = prompt("内容");
   if ((question != null) && (question.length > 0)) {
   　currentQuestion += 1;
   	addQuestionText(question);
     addBr();
     codeboxElement.value += "<br>" + '\r\n';
   	addInputBox();
-  	addAnswer(prompt("Correct answer"));
-  	addNote(prompt("Any note?"));
+  	addAnswer(prompt("答え"));
+  	addNote(prompt("メモ"));
   	textbaseQuestion.push("q" + currentQuestion);
   }
 }
 
 function addMultipleChoice() {
-  var num = mapNumber(prompt("How many choices?"));
+  var num = mapNumber(prompt("選択はいくつ？"));
   var answers = [];
   for (let i=1; i<=num; i++) {
-    answers.push(prompt("Choice " + i));
+    answers.push(prompt("選択 " + i));
   }
-  var correct = mapNumber(prompt("Correct choice?"));
+  var correct = mapNumber(prompt("答え"));
   for (let i=1; i<=num; i++) {
     var input = document.createElement("input");
     input.type = "radio";
