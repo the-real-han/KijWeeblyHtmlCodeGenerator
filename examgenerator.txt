@@ -15,7 +15,7 @@
 <script>
 function showAnswer() {
   var points = 0;
-  //multiplechoice
+  //@@multiplechoice
   multiplechoice.forEach(function(question) {
     var selected = document.querySelector('input[name=' + question + ']:checked');
     if (selected !== null) {
@@ -30,7 +30,7 @@ function showAnswer() {
       }
     }
   })
-  //textbasedquestion
+  //@@textbasedquestion
   textbasedquestion.forEach(function(question) {
     var input = document.getElementsByName(question + "a1")[0].value;
     if (input.length > 0) {
@@ -88,7 +88,9 @@ function clearField() {
 }
 
 function finish() {
-  codeboxElement.value += script.replace("//multiplechoice", "var multiplechoice = ['" + selectionQuestion.join("','") + "'];").replace("//textbasedquestion", "var textbasedquestion = ['" + textbaseQuestion.join("','") + "'];");
+  if (!codeboxElement.value.includes("function mapString(")) {
+    codeboxElement.value += script.replace("//@@multiplechoice", "var multiplechoice = ['" + selectionQuestion.join("','") + "'];").replace("//@@textbasedquestion", "var textbasedquestion = ['" + textbaseQuestion.join("','") + "'];");
+  }
 }
 
 function addSelectionQuestion() {
