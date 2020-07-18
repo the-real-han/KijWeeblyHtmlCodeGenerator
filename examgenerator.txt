@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html>
+<body>
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addTitle()">部分話題</button> 
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addSelectionQuestion()">択一問題</button> 
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addTypingQuestion()">入力問題</button> 
@@ -96,10 +99,12 @@ function finish() {
 function addSelectionQuestion() {
   var question = prompt("内容");
   if ((question != null) && (question.length > 0)) {
+    addBegin();
   　currentQuestion += 1;
     addQuestionText(question);
     addMultipleChoice();
     addNote(prompt("メモ"));
+    addEnd();
     selectionQuestion.push("q" + currentQuestion);
   }
 }
@@ -107,6 +112,7 @@ function addSelectionQuestion() {
 function addAudioQuestion() {
   var url = prompt("ファイルURL");
   if ((url != null) && (url.length > 0)) {
+    addBegin();
   　currentQuestion += 1;
     var audio = document.createElement("audio");
     audio.controls = true;
@@ -120,6 +126,7 @@ function addAudioQuestion() {
     codeboxElement.value += audio.outerHTML + "<br><br>" + '\r\n';
     addMultipleChoice();
     addNote(prompt("メモ"));
+    addEnd();
     selectionQuestion.push("q" + currentQuestion);
   }
 }
@@ -127,6 +134,7 @@ function addAudioQuestion() {
 function addArrangingQuestion() {
   var input = prompt("分はいくつ （８以下）?");
   if ((input != null) && (input.length > 0)) {
+    addBegin();
   　currentQuestion += 1;
     var num = mapNumber(input);
     var parts = [];
@@ -161,6 +169,7 @@ function addArrangingQuestion() {
     addInputBox();
     addAnswer(prompt("答え"));
     addNote(prompt("メモ"));
+    addEnd();
     textbaseQuestion.push("q" + currentQuestion);
   }
 }
@@ -179,6 +188,7 @@ function addTitle() {
 function addTypingQuestion() {
   var question = prompt("内容");
   if ((question != null) && (question.length > 0)) {
+    addBegin();
   　currentQuestion += 1;
   	addQuestionText(question);
     addBr();
@@ -186,6 +196,7 @@ function addTypingQuestion() {
   	addInputBox();
   	addAnswer(prompt("答え"));
   	addNote(prompt("メモ"));
+    addEnd();
   	textbaseQuestion.push("q" + currentQuestion);
   }
 }
@@ -227,6 +238,14 @@ function addMultipleChoice() {
 
 function addBr() {
   visualElement.appendChild(document.createElement('br'));
+}
+
+function addBegin() {
+  codeboxElement.value += "<!--**************はじめ**************-->" + '\r\n';
+}
+
+function addEnd() {
+  codeboxElement.value += "<!--**************おわり**************-->" + '\r\n';
 }
 
 function addQuestionText(question) {
@@ -290,3 +309,6 @@ function tr( text, search, replace ) {
 }
 
 </script>
+
+</body>
+</html>
