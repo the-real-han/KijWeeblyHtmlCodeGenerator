@@ -8,7 +8,7 @@
 <br><br>
 <div name="visualbox"></div>
 <br><br>
-<textarea name="codebox" style="width:90%;padding:1em;border:1px solid" rows=25><br>
+<textarea name="codebox" style="width:90%;padding:1em;border:1px solid" rows=25 onchange="updateVisualbox()"><br>
 <div name="pointsbox" style="font-size:25px;display:none;color:green"></div><br>
 
 <button style="margin:auto;display:block;border: solid 2px" onclick="showAnswer()">チェックする</button>
@@ -90,6 +90,7 @@ function clearField() {
 function finish() {
   if (!codeboxElement.value.includes("function mapString(")) {
     codeboxElement.value += script.replace("//@@multiplechoice", "var multiplechoice = ['" + selectionQuestion.join("','") + "'];").replace("//@@textbasedquestion", "var textbasedquestion = ['" + textbaseQuestion.join("','") + "'];");
+    updateVisualbox();
   }
 }
 
@@ -103,6 +104,7 @@ function addSelectionQuestion() {
     addNote(prompt("メモ"));
     addEnd();
     selectionQuestion.push("q" + currentQuestion);
+    updateVisualbox();
   }
 }
 
@@ -117,14 +119,12 @@ function addAudioQuestion() {
     source.setAttribute('src', url);
     audio.appendChild(source);
     audio.appendChild(document.createTextNode("Your browser does not support the audio element."));
-    visualElement.appendChild(audio);
-    addBr();
-    addBr();
     codeboxElement.value += audio.outerHTML + "<br><br>" + '\r\n';
     addMultipleChoice();
     addNote(prompt("メモ"));
     addEnd();
     selectionQuestion.push("q" + currentQuestion);
+    updateVisualbox();
   }
 }
 
@@ -161,13 +161,12 @@ function addArrangingQuestion() {
     tableElement.appendChild(tr2Element);
     codeboxElement.value += tableElement.outerHTML + "<br>" + '\r\n';
     tableElement.style = "border: 1px solid;width: 25%;margin: 0 auto;";
-    visualElement.appendChild(tableElement);
-    addBr();
     addInputBox();
     addAnswer(prompt("答え"));
     addNote(prompt("メモ"));
     addEnd();
     textbaseQuestion.push("q" + currentQuestion);
+    updateVisualbox();
   }
 }
 
@@ -176,9 +175,8 @@ function addTitle() {
   if ((title != null) && (title.length > 0)) {
     var titleElement = document.createElement('h3');
     titleElement.innerText = title;
-    visualElement.appendChild(titleElement);
-    addBr();
     codeboxElement.value += titleElement.outerHTML + "<br>" + '\r\n';
+    updateVisualbox();
   }
 }
 
@@ -188,13 +186,13 @@ function addTypingQuestion() {
     addBegin();
   　currentQuestion += 1;
   	addQuestionText(question);
-    addBr();
     codeboxElement.value += "<br>" + '\r\n';
   	addInputBox();
   	addAnswer(prompt("答え"));
   	addNote(prompt("メモ"));
     addEnd();
   	textbaseQuestion.push("q" + currentQuestion);
+    updateVisualbox();
   }
 }
 
@@ -223,18 +221,10 @@ function addMultipleChoice() {
       div.style = "display:none;color:red";
       div.textContent = "X";
     }
-    visualElement.appendChild(input);
-    visualElement.appendChild(label);
-    visualElement.appendChild(div);
-    addBr();
     codeboxElement.value += input.outerHTML + '\r\n';
     codeboxElement.value += label.outerHTML + '\r\n';
     codeboxElement.value += div.outerHTML + "<br>" + '\r\n';
   }
-}
-
-function addBr() {
-  visualElement.appendChild(document.createElement('br'));
 }
 
 function addBegin() {
@@ -246,8 +236,6 @@ function addEnd() {
 }
 
 function addQuestionText(question) {
-  visualElement.innerHTML += question;
-  addBr();
   codeboxElement.value += question + "<br>" + '\r\n';
 }
 
@@ -256,7 +244,6 @@ function addInputBox() {
   inputElement.name = "q" + currentQuestion + "a1";
   inputElement.type = 'text';
   inputElement.style = 'text-transform:uppercase;border: 1px solid';
-  visualElement.appendChild(inputElement);
   codeboxElement.value += inputElement.outerHTML + '\r\n';
 }
 
@@ -265,8 +252,6 @@ function addAnswer(answer) {
   answerElement.setAttribute('name', "q" + currentQuestion + "a1check");
   answerElement.style = 'display:none;color:red';
   answerElement.textContent = mapString(answer).trim().toUpperCase();
-  visualElement.appendChild(answerElement);
-  addBr();
   codeboxElement.value += answerElement.outerHTML + "<br>" + '\r\n';
 }
 
@@ -276,10 +261,8 @@ function addNote(note) {
     noteElement.setAttribute('name', "q" + currentQuestion + "note");
     noteElement.style = 'display:none;color:blue';
     noteElement.textContent = note;
-    visualElement.appendChild(noteElement);
     codeboxElement.value += noteElement.outerHTML;
   }
-  addBr();
   codeboxElement.value += "<br>" + '\r\n';
 }
 
@@ -289,6 +272,10 @@ function mapNumber(input) {
 
 function mapString(input) {
   return tr(input, "ＡａＢｂＣｃＤｄＥｅＦｆＧｇＨｈＩｉＪｊＫｋＬｌＭｍＮｎＯｏＰｐＱｑＲｒＳｓＴｔＵｕＶｖＷｗＸｘＹｙＺｚ　", "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz ");
+}
+
+function updateVisualbox() {
+  visualElement.innerHTML = codeboxElement.value;
 }
 
 function tr( text, search, replace ) {
