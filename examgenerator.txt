@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body>
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addTitle()">部分話題</button> 
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addSelectionQuestion()">択一問題</button> 
 <button style="margin:auto;display:inline;border:solid 1px" onclick="addTypingQuestion()">入力問題</button> 
@@ -309,6 +306,3 @@ function tr( text, search, replace ) {
 }
 
 </script>
-
-</body>
-</html>
