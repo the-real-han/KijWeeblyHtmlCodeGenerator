@@ -15,6 +15,7 @@
 <script>
 function showAnswer() {
   var points = 0;
+  var totalpoints = 0;
   //@@multiplechoice
   if (multiplechoice.length > 0) {
     multiplechoice.forEach(function(question) {
@@ -22,6 +23,7 @@ function showAnswer() {
         var selected = document.querySelector('input[name=' + question + ']:checked');
         if (selected !== null) {
           var element = document.getElementsByName(question + selected.value + "check")[0];
+          totalpoints = totalpoints + 1;
           element.style.display = "inline";
           if (element.textContent == "O") {
             points = points + 1;
@@ -41,6 +43,7 @@ function showAnswer() {
         var input = document.getElementsByName(question + "a1")[0].value;
         if (input.length > 0) {
           var answerElement = document.getElementsByName(question + "a1check")[0];
+          totalpoints = totalpoints + 1;
           if (mapString(input).trim().toUpperCase() == answerElement.textContent) {
             answerElement.style.color = "green";
             points = points + 1;
@@ -54,7 +57,6 @@ function showAnswer() {
       }
     })
   }
-  var totalpoints = multiplechoice.length + textbasedquestion.length;
   var pointsbox = document.getElementsByName("pointsbox")[0];
   pointsbox.style.display = "block";
   pointsbox.textContent = "結果： " + points + "/" + totalpoints;
