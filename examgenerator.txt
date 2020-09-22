@@ -16,36 +16,44 @@
 function showAnswer() {
   var points = 0;
   //@@multiplechoice
-  multiplechoice.forEach(function(question) {
-    var selected = document.querySelector('input[name=' + question + ']:checked');
-    if (selected !== null) {
-      var element = document.getElementsByName(question + selected.value + "check")[0];
-      element.style.display = "inline";
-      if (element.textContent == "O") {
-        points = points + 1;
+  if (multiplechoice.length > 0) {
+    multiplechoice.forEach(function(question) {
+      if (question && question.length > 0) {
+        var selected = document.querySelector('input[name=' + question + ']:checked');
+        if (selected !== null) {
+          var element = document.getElementsByName(question + selected.value + "check")[0];
+          element.style.display = "inline";
+          if (element.textContent == "O") {
+            points = points + 1;
+          }
+          var note = document.getElementsByName(question + "note");
+          if (note.length > 0) {
+            note[0].style.display = "inline";
+          }
+        }
       }
-      var note = document.getElementsByName(question + "note");
-      if (note.length > 0) {
-        note[0].style.display = "inline";
-      }
-    }
-  })
+    })
+  }
   //@@textbasedquestion
-  textbasedquestion.forEach(function(question) {
-    var input = document.getElementsByName(question + "a1")[0].value;
-    if (input.length > 0) {
-      var answerElement = document.getElementsByName(question + "a1check")[0];
-      if (mapString(input).trim().toUpperCase() == answerElement.textContent) {
-        answerElement.style.color = "green";
-        points = points + 1;
+  if (textbasedquestion.length > 0) {
+    textbasedquestion.forEach(function(question) {
+      if (question && question.length > 0) {
+        var input = document.getElementsByName(question + "a1")[0].value;
+        if (input.length > 0) {
+          var answerElement = document.getElementsByName(question + "a1check")[0];
+          if (mapString(input).trim().toUpperCase() == answerElement.textContent) {
+            answerElement.style.color = "green";
+            points = points + 1;
+          }
+          answerElement.style.display = "inline";
+          var note = document.getElementsByName(question + "note");
+          if (note.length > 0) {
+            note[0].style.display = "inline";
+          }
+        }
       }
-      answerElement.style.display = "inline";
-      var note = document.getElementsByName(question + "note");
-      if (note.length > 0) {
-        note[0].style.display = "inline";
-      }
-    }
-  })
+    })
+  }
   var totalpoints = multiplechoice.length + textbasedquestion.length;
   var pointsbox = document.getElementsByName("pointsbox")[0];
   pointsbox.style.display = "block";
